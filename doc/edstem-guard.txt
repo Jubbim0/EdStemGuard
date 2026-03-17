@@ -1,0 +1,65 @@
+*edstem-guard.txt*                                    For Neovim version 0.10+
+
+==============================================================================
+CONTENTS                                                    *edstem-guard-toc*
+
+1. Introduction...........................................|edstem-guard-intro|
+2. Commands.............................................|edstem-guard-commands|
+3. Configuration.........................................|edstem-guard-config|
+4. Notes.................................................|edstem-guard-notes|
+
+==============================================================================
+1. Introduction                                           *edstem-guard-intro*
+
+nvim-edstem-guard prompts you to compile, commit, and push after every
+configurable chunk of local changes inside EdStem challenge repositories.
+
+It is intended as a workflow guardrail for local-development assessment rules,
+not as a substitute for reading and following course policy.
+
+==============================================================================
+2. Commands                                             *edstem-guard-commands*
+
+:EdStemGuardCheck
+    Force a compile check, commit, and push for the current EdStem repo.
+
+:EdStemGuardInfo
+    Show status information for the current repo.
+
+==============================================================================
+3. Configuration                                         *edstem-guard-config*
+
+Example:
+>
+  require("edstem_guard").setup({
+    line_threshold = 20,
+    repo_commands = {
+      ["singly"] = { "make" },
+    },
+  })
+<
+
+Supported options:
+
+line_threshold                                          *edstem-guard-threshold*
+    Number of changed lines per prompt bucket.
+
+remote_patterns                                           *edstem-guard-remote*
+    A list of Lua patterns used to detect EdStem remotes.
+
+repo_commands                                               *edstem-guard-cmd*
+    Table mapping either repo basename or full repo root path to an argv list.
+
+commit_message                                        *edstem-guard-commitmsg*
+    String or function(ctx) returning the Git commit message.
+
+==============================================================================
+4. Notes                                                   *edstem-guard-notes*
+
+- The fallback compile command only works for simple single-file .cpp buffers.
+- Non-trivial projects should use repo-specific compile commands.
+- Failed compiles re-prompt on the next save.
+- Choosing "Later" defers only the current save.
+
+==============================================================================
+vim:tw=78:ts=8:noet:ft=help:norl:
