@@ -27,7 +27,7 @@ It is designed for workflows where you work locally in a Git clone of an EdStem 
 
 ```lua
 {
-  "YOUR_GITHUB_USERNAME/nvim-edstem-guard",
+  "Jubbim0/nvim-edstem-guard",
   main = "edstem_guard",
   opts = {
     line_threshold = 20,
